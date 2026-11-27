@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 // Props: todo, onToggle, onDelete, onEdit
 // State: isEditing (lagi mode ubah atau tidak), draft (teks yang lagi diubah)
@@ -37,6 +38,7 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }) {
       <span style={{ textDecoration: todo.done ? "line-through" : "none" }}>
         {todo.text}
       </span>
+      <Link to={`/todo/${todo.id}`}>Detail</Link>
       <button onClick={() => setIsEditing(true)}>Ubah</button>
       <button onClick={() => onDelete(todo.id)}>Hapus</button>
     </li>
