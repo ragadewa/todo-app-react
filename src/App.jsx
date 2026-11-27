@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router";
+import { Routes, Route, NavLink, Link } from "react-router";
 import HomePage from "./pages/HomePage";
 import AddPage from "./pages/AddPage";
 import DetailPage from "./pages/DetailPage";
+import SuggestionsPage from "./pages/SuggestionsPage";
 
 function navStyle({ isActive }) {
   return { fontWeight: isActive ? "bold" : "normal", marginRight: "12px" };
@@ -49,19 +50,18 @@ export default function App() {
     <div>
       <h1>Daftar Kegiatan</h1>
       <nav>
-        <NavLink to="/tambah" style={navStyle}>Tambah</NavLink>
-        <NavLink to="/" style={navStyle}>Beranda</NavLink>
+        <NavLink to="/saran" style={navStyle}>
+          Ide dari API
+        </NavLink>
+        <NavLink to="/tambah" style={navStyle}>
+          Tambah
+        </NavLink>
+        <NavLink end to="/" style={navStyle}>
+          Beranda
+        </NavLink>
       </nav>
       <hr />
       <Routes>
-                <Route
-          path="/todo/:id"
-          element={
-            <DetailPage todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
-          }
-        />
-        
-        <Route path="/tambah" element={<AddPage onAdd={addTodo} />} />
         <Route
           path="/"
           element={
@@ -71,6 +71,29 @@ export default function App() {
               onDelete={deleteTodo}
               onEdit={editTodo}
             />
+          }
+        />
+        <Route path="/tambah" element={<AddPage onAdd={addTodo} />} />
+        <Route
+          path="/todo/:id"
+          element={
+            <DetailPage
+              todos={todos}
+              onToggle={toggleTodo}
+              onDelete={deleteTodo}
+            />
+          }
+        />
+        <Route
+          path="/saran"
+          element={<SuggestionsPage todos={todos} onAdd={addTodo} />}
+        />
+        <Route
+          path="*"
+          element={
+            <p>
+              Halaman tidak ditemukan. <Link to="/">Kembali ke Beranda</Link>
+            </p>
           }
         />
       </Routes>
