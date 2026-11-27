@@ -50,15 +50,9 @@ export default function App() {
     <div>
       <h1>Daftar Kegiatan</h1>
       <nav>
-        <NavLink to="/saran" style={navStyle}>
-          Ide dari API
-        </NavLink>
-        <NavLink to="/tambah" style={navStyle}>
-          Tambah
-        </NavLink>
-        <NavLink end to="/" style={navStyle}>
-          Beranda
-        </NavLink>
+        <NavLink to="/" style={navStyle}>Beranda</NavLink>
+        <NavLink to="/tambah" style={navStyle}>Tambah</NavLink>
+        <NavLink to="/saran" style={navStyle}>Ide dari API</NavLink>
       </nav>
       <hr />
       <Routes>
@@ -77,11 +71,7 @@ export default function App() {
         <Route
           path="/todo/:id"
           element={
-            <DetailPage
-              todos={todos}
-              onToggle={toggleTodo}
-              onDelete={deleteTodo}
-            />
+            <DetailPage todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
           }
         />
         <Route
