@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
 import FilterBar from "./components/FilterBar";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem("todos");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Setiap kali todos berubah, simpan ke localStorage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   const [filter, setFilter] = useState("all");
 
   function addTodo(text) {
