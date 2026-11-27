@@ -20,6 +20,12 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
 
+  function editTodo(id, newText) {
+    setTodos(
+      todos.map((t) => (t.id === id ? { ...t, text: newText } : t))
+    );
+  }
+
   return (
     <div>
       <h1>Daftar Kegiatan</h1>
@@ -31,6 +37,7 @@ export default function App() {
             todo={t}
             onToggle={toggleTodo}
             onDelete={deleteTodo}
+            onEdit={editTodo}
           />
         ))}
       </ul>
